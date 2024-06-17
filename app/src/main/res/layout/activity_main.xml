@@ -10,14 +10,14 @@
     tools:context=".MainActivity">
 
     <!-- 본 화면 -->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="#0174BE">
+            android:layout_height="200dp"
+            android:background="@color/main">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -34,7 +34,16 @@
 
         </RelativeLayout>
 
-    </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:background="@drawable/layout_background"
+            android:layout_marginTop="160dp"
+            >
+
+        </View>
+
+    </RelativeLayout>
 
 
     <!-- 드로어 화면 -->
