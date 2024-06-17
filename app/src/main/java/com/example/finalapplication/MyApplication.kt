@@ -10,6 +10,15 @@ class MyApplication: MultiDexApplication() {
     companion object {
         lateinit var auth: FirebaseAuth
         var email: String? = null
+
+        fun checkAuth(): Boolean {
+            var currentUser = auth.currentUser
+            if (currentUser != null) {
+                email = currentUser.email
+                return currentUser.isEmailVerified
+            }
+            return false
+        }
     }
 
     override fun onCreate() {

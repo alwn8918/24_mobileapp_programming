@@ -29,22 +29,32 @@
         android:layout_marginTop="5dp"/>
 
     <EditText
-        android:id="@+id/edit_id"
+        android:id="@+id/email"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:background="@drawable/light_gray_background"
         android:fontFamily="@font/gmarketsansttfmedium"
         android:layout_marginTop="20dp"
-        android:hint="   아이디" />
+        android:hint="   이메일" />
 
     <EditText
-        android:id="@+id/edit_password"
+        android:id="@+id/password"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:background="@drawable/light_gray_background"
         android:fontFamily="@font/gmarketsansttfmedium"
         android:layout_marginTop="5dp"
         android:hint="   비밀번호" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:background="@drawable/blue_background"
+        android:text="로그인"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp" />
 
     <View
         android:layout_width="350dp"
