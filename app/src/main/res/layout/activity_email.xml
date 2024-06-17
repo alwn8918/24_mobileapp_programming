@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".EmailActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="다가치"
+        android:fontFamily="@font/bagelfatoneregular"
+        android:textSize="55dp"
+        android:gravity="center"
+        android:textColor="@color/main"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원가입하기 위해\n이메일과 비밀번호를 입력해 주세요!"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:background="@drawable/light_gray_background"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:layout_marginTop="20dp"
+        android:hint="   이메일" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:background="@drawable/light_gray_background"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:layout_marginTop="5dp"
+        android:hint="   비밀번호 (6자 이상)" />
+
+    <Button
+        android:id="@+id/btn_sign"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:background="@drawable/blue_background"
+        android:text="가입하기"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp" />
+
+
+</LinearLayout>
