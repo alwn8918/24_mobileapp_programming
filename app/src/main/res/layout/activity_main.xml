@@ -31,17 +31,61 @@
                 android:textAlignment="viewEnd">
             </TextView>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.SearchView
+                    android:layout_width="330dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/gray_background"
+                    android:layout_marginTop="90dp"/>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-        <View
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="600dp"
             android:background="@drawable/layout_background"
             android:layout_marginTop="160dp"
             >
 
-        </View>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:orientation="horizontal"
+                android:gravity="center" >
+
+                <Button
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/gray_background"/>
+
+                <Button
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/gray_background"
+                    android:layout_marginLeft="15dp" />
+
+                <Button
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/gray_background"
+                    android:layout_marginLeft="15dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="360dp"
+                android:layout_height="2dp"
+                android:background="@color/gray"
+                android:layout_marginTop="160dp"
+                android:layout_marginLeft="15dp"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

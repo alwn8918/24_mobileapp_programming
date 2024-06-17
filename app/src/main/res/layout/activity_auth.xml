@@ -1,15 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".AuthActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello" />
+        android:text="다가치"
+        android:fontFamily="@font/bagelfatoneregular"
+        android:textSize="55dp"
+        android:gravity="center"
+        android:textColor="@color/main"/>
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="더 많은 기능을 사용하기 위해\n로그인 하세요!"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"/>
+
+    <EditText
+        android:id="@+id/edit_id"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:background="@drawable/light_gray_background"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:layout_marginTop="20dp"
+        android:hint="   아이디" />
+
+    <EditText
+        android:id="@+id/edit_password"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:background="@drawable/light_gray_background"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:layout_marginTop="5dp"
+        android:hint="   비밀번호" />
+
+    <View
+        android:layout_width="350dp"
+        android:layout_height="2dp"
+        android:background="@color/lightGray"
+        android:layout_marginTop="50dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="계정이 없으신가요?"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="40dp" />
+    
+    <Button
+        android:id="@+id/btn_email"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:background="@drawable/gray_background"
+        android:text="이메일로 가입하기"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:textColor="@color/white"
+        android:stateListAnimator="@null"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_google"
+            android:layout_width="172.5dp"
+            android:layout_height="40dp"
+            android:background="@drawable/blue_background"
+            android:text="구글로 가입하기"
+            android:fontFamily="@font/gmarketsansttfmedium"
+            android:textColor="@color/white"
+            android:stateListAnimator="@null"
+            android:layout_marginTop="5dp" />
+
+        <Button
+            android:id="@+id/btn_kakao"
+            android:layout_width="172.5dp"
+            android:layout_height="40dp"
+            android:background="@drawable/yellow_background"
+            android:text="카카오톡으로 가입하기"
+            android:fontFamily="@font/gmarketsansttfmedium"
+            android:textColor="@color/white"
+            android:stateListAnimator="@null"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
