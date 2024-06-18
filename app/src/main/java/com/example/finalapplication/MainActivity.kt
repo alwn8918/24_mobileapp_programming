@@ -1,5 +1,6 @@
 package com.example.finalapplication
 
+import android.app.ListActivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,6 +21,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // ListFragment
+        val listfragment = ListFragment()
+        val bundle = Bundle()
+
+        binding.btnSearch.setOnClickListener {
+            Log.d("mobileApp", "btnSearch")
+            bundle.putString("area", binding.search.text.toString())
+
+            listfragment.arguments = bundle
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.activity_content, listfragment)
+                .commit()
+        }
 
         // NavigationItem
         binding.mainDrawerView.setNavigationItemSelectedListener(this)

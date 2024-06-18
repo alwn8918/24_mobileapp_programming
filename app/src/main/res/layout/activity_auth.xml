@@ -44,7 +44,8 @@
         android:background="@drawable/light_gray_background"
         android:fontFamily="@font/gmarketsansttfmedium"
         android:layout_marginTop="5dp"
-        android:hint="   비밀번호" />
+        android:hint="   비밀번호"
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/btn_login"
