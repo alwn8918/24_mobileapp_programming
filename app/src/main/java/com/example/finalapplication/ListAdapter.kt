@@ -1,7 +1,10 @@
 package com.example.finalapplication
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.finalapplication.databinding.ItemListBinding
@@ -28,5 +31,11 @@ class ListAdapter(val datas: MutableList<myXmlItem>?): RecyclerView.Adapter<Recy
             .load(model.firstimage)
             .override(150, 100)
             .into(binding.image)
+
+        binding.list.setOnClickListener {
+            Log.d("mobileApp", "listClick")
+            val intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            holder.itemView.context.startActivity(intent)
+        }
     }
 }
