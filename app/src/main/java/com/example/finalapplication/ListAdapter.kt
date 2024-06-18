@@ -23,5 +23,10 @@ class ListAdapter(val datas: MutableList<myXmlItem>?): RecyclerView.Adapter<Recy
         binding.name.text = model.title
         binding.address.text = model.addr1
         binding.type.text = model.cat1 + " " + model.cat2 + " " + model.cat3
+
+        Glide.with(binding.root)
+            .load(model.firstimage)
+            .override(150, 100)
+            .into(binding.image)
     }
 }
