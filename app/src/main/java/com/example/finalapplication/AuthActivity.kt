@@ -30,7 +30,7 @@ class AuthActivity : AppCompatActivity() {
 
         val requestLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
-            Log.d("mobileApp", "account: ${task.toString()}")
+            Log.d("mobileApp", "account: $task")
             try {
                 val account = task.getResult(ApiException::class.java)
                 val crendential = GoogleAuthProvider.getCredential(account.idToken, null)

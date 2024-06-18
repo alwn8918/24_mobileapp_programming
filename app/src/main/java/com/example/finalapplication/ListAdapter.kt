@@ -35,6 +35,11 @@ class ListAdapter(val datas: MutableList<myXmlItem>?): RecyclerView.Adapter<Recy
         binding.list.setOnClickListener {
             Log.d("mobileApp", "listClick")
             val intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            intent.putExtra("image", model.firstimage.toString())
+            intent.putExtra("type", model.cat1.toString() + " > " + model.cat2.toString() + " > " + model.cat3.toString())
+            intent.putExtra("name", model.title.toString())
+            intent.putExtra("address", model.addr1.toString())
+            intent.putExtra("id", model.contentid.toString())
             holder.itemView.context.startActivity(intent)
         }
     }

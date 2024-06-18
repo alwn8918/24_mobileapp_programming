@@ -1,5 +1,6 @@
 package com.example.finalapplication
 
+import com.bumptech.glide.Glide.init
 import com.tickaroo.tikxml.TikXml
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import retrofit2.Retrofit
@@ -12,8 +13,15 @@ class RetrofitConnection {
         private const val BASE_URL = "https://apis.data.go.kr/B551011/KorWithService1/"
 
         val listNetServ: NetworkService
+        val introNetServ: NetworkService
+
         val parser = TikXml.Builder().exceptionOnUnreadXml(false).build()
         val listRetrofit: Retrofit
+            get() = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(TikXmlConverterFactory.create(parser))
+                .build()
+        val introRetrofit: Retrofit
             get() = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(TikXmlConverterFactory.create(parser))
@@ -21,6 +29,7 @@ class RetrofitConnection {
 
         init {
             listNetServ = listRetrofit.create(NetworkService::class.java)
+            introNetServ = introRetrofit.create(NetworkService::class.java)
         }
     }
 }
