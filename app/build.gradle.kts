@@ -79,4 +79,7 @@ dependencies {
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.12.0")
+
+    // preference
+    implementation("androidx.preference:preference:1.2.1")
 }

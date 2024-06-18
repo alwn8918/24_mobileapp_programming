@@ -64,6 +64,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.myComment -> {
                 true
             }
+            R.id.setting -> {
+                true
+            }
         }
 
         return super.onOptionsItemSelected(item)
@@ -94,6 +97,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     onStart()
                 }
 
+            }
+            R.id.setting -> {
+                Log.d("mobileApp", "setting")
+
+                val intent = Intent(this, SettingActivity::class.java)
+                startActivity(intent)
             }
         }
         return false
