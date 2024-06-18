@@ -44,21 +44,20 @@ class ListFragment : Fragment() {
         val binding = FragmentListBinding.inflate(inflater, container, false)
         val area = arguments?.getString("area") ?: "1"
 
-        val call: Call<ListResponse> = RetrofitConnection.listNetServ.getJsonList(
+        val call: Call<ListResponse> = RetrofitConnection.listNetServ.getXmlList(
             "6u8TrayNZB5SJTA16jp8QA+Gxqnfg0+iIQ3p9BpNTvNTJglB+fxHVqibODUo1xV91MI3tJhn6d670Om3L6gGag==",
             area.toInt(),
             "Y",
             "A",
             "ETC",
-            "AppTest",
-            "json"
+            "AppTest"
         )
 
         call?.enqueue(object: Callback<ListResponse> {
             override fun onResponse(call: Call<ListResponse>, response: Response<ListResponse>) {
                 if (response.isSuccessful) {
                     Log.d("mobileApp", "${response.body()}")
-                    binding.listRecyclerView.adapter = ListAdapter(response.body()?.response!!.body!!.items!!.item)
+                    binding.listRecyclerView.adapter = ListAdapter(response.body()!!.body!!.items!!.item)
                     binding.listRecyclerView.layoutManager = LinearLayoutManager(activity)
                     binding.listRecyclerView.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
                 }

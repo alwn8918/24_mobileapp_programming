@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onStart()
 
         val username = headerView.findViewById<TextView>(R.id.username)
-        val useremail = headerView.findViewById<TextView>(R.id.user_email)
+        val useremail = headerView.findViewById<TextView>(R.id.useremail)
         val login = binding.mainDrawerView.menu.findItem(R.id.login)
 
         if (MyApplication.checkAuth()) {

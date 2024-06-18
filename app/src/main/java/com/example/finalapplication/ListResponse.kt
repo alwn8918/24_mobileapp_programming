@@ -1,9 +1,41 @@
 package com.example.finalapplication
 
-import retrofit2.Response
+import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.PropertyElement
+import com.tickaroo.tikxml.annotation.Xml
 
-data class myJsonItem(val title: String, val addr1: String, val cat1: String, val cat2: String, val cat3: String, val firstImage: String)
-data class myJsonItems(val item: MutableList<myJsonItem>)
-data class myJsonBody(val items: myJsonItems)
-data class myJsonResponse(val body: myJsonBody)
-data class ListResponse(val response: myJsonResponse)
+@Xml(name="response")
+data class ListResponse(
+    @Element
+    val body: myXmlBody
+)
+
+@Xml(name="body")
+data class myXmlBody(
+    @Element
+    val items: myXmlItems
+)
+
+@Xml(name="items")
+data class myXmlItems(
+    @Element
+    val item: MutableList<myXmlItem>
+)
+
+@Xml(name="item")
+data class myXmlItem(
+    @PropertyElement
+    val title: String?,
+    @PropertyElement
+    val addr1: String?,
+    @PropertyElement
+    val cat1: String?,
+    @PropertyElement
+    val cat2: String?,
+    @PropertyElement
+    val cat3: String?,
+    @PropertyElement
+    val firstImage: String?
+) {
+    constructor(): this(null, null, null, null, null, null)
+}
