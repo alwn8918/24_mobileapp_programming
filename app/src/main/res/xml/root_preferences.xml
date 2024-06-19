@@ -3,16 +3,16 @@
     <PreferenceCategory app:title="@string/messages_header">
 
         <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
+            app:key="username"
+            app:title="사용자 이름 설정"
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
+            app:defaultValue="#0174BE"
+            app:entries="@array/my_color"
+            app:entryValues="@array/my_color_values"
+            app:key="color"
+            app:title="색상 변경"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>

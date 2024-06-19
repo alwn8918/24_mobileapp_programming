@@ -1,17 +1,22 @@
 package com.example.finalapplication
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
+import androidx.preference.PreferenceManager
 import com.bumptech.glide.Glide
 import com.example.finalapplication.databinding.ActivityAuthBinding
 import com.example.finalapplication.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
     lateinit var binding: ActivityDetailBinding
+    lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -47,6 +52,18 @@ class DetailActivity : AppCompatActivity() {
 
         val address = intent.getStringExtra("address")
         binding.address.text = address
+
+    }
+
+    // 설정에서 값 바꾸면 바로 적용
+    override fun onResume() {
+        super.onResume()
+
+        // sharedPreferences
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val color = sharedPreferences.getString("color", "#0174BE")
+
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(color)))
 
     }
 }

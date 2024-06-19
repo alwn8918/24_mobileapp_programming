@@ -2,13 +2,18 @@ package com.example.finalapplication
 
 import android.app.ListActivity
 import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.preference.PreferenceManager
 import com.example.finalapplication.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 
@@ -16,11 +21,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var binding: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var headerView: View
+    lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // sharedPreferences
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val color = sharedPreferences.getString("color", "#0174BE")
+        binding.mainView.setBackgroundColor(Color.parseColor(color))
 
         // ListFragment
         val listfragment = ListFragment()
@@ -126,6 +138,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             useremail.text = "로그인해주세요"
             login.title = "로그인"
         }
+
+    }
+
+    // 설정에서 값 바꾸면 바로 적용
+    override fun onResume() {
+        super.onResume()
+
+        // sharedPreferences
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val color = sharedPreferences.getString("color", "#0174BE")
+        binding.mainView.setBackgroundColor(Color.parseColor(color))
+
+        val drawer = headerView.findViewById<RelativeLayout>(R.id.drawer_view)
+        drawer.setBackgroundColor(Color.parseColor(color))
+
+
+        val name = sharedPreferences.getString("username", "안녕하세요!")
+        val username = headerView.findViewById<TextView>(R.id.username)
+        username.text = name
+
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(color)))
+
     }
 
 }

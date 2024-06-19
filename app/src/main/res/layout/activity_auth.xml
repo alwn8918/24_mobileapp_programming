@@ -10,6 +10,7 @@
     tools:context=".AuthActivity">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="다가치"
