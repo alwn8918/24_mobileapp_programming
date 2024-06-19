@@ -88,4 +88,7 @@ dependencies {
 
     // Storage
     implementation("com.google.firebase:firebase-storage-ktx:21.0.0")
+
+    // kakao
+    implementation("com.kakao.sdk:v2-user:2.12.1")
 }

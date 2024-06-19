@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".MyApplication"
+        android:name = ".GlobalApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,9 +19,6 @@
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustNothing"
         tools:targetApi="31">
-        <activity
-            android:name=".RecentActivity"
-            android:exported="false" />
         <activity
             android:name=".SettingActivity"
             android:exported="false" />
@@ -45,6 +42,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:host="oauth"
+                    android:scheme="kakaoc1342b09e74e2bf9a7414095b30ba91b" />
+            </intent-filter>
+
+        </activity>
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="c1342b09e74e2bf9a7414095b30ba91b"/>
     </application>
 
 </manifest>
