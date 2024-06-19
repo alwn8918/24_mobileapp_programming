@@ -61,7 +61,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="20dp"
                         android:hint="지역 이름으로 검색"
-                        android:fontFamily="@font/gmarketsansttflight"
+                        android:fontFamily="@font/gmarketsansttfmedium"
                         android:textSize="15dp"
                         android:background="@null" />
 

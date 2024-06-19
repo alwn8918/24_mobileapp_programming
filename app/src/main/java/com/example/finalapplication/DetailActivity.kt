@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.util.TypedValue
 import androidx.preference.PreferenceManager
@@ -82,6 +83,8 @@ class DetailActivity : AppCompatActivity() {
 
         val id = intent.getStringExtra("id")
         binding.contentid.text = id
+
+        getSupportActionBar()?.setTitle(Html.fromHtml("<font color='#FFFFFF'>" + name + "</font>"));
 
     }
 
