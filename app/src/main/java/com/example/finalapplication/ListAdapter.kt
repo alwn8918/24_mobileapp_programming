@@ -8,6 +8,8 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.finalapplication.databinding.ItemListBinding
+import java.io.File
+import java.io.OutputStreamWriter
 
 class ListViewHolder(val binding: ItemListBinding): RecyclerView.ViewHolder(binding.root)
 class ListAdapter(val datas: MutableList<myXmlItem>?): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -35,11 +37,18 @@ class ListAdapter(val datas: MutableList<myXmlItem>?): RecyclerView.Adapter<Recy
         binding.list.setOnClickListener {
             Log.d("mobileApp", "listClick")
             val intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            val title = model.title.toString()
             intent.putExtra("image", model.firstimage.toString())
             intent.putExtra("type", model.cat1.toString() + " > " + model.cat2.toString() + " > " + model.cat3.toString())
-            intent.putExtra("name", model.title.toString())
+            intent.putExtra("name", title)
             intent.putExtra("address", model.addr1.toString())
             intent.putExtra("id", model.contentid.toString())
+
+            val file = File(holder.itemView.context.filesDir, "recent.txt")
+            val writeStream: OutputStreamWriter = file.writer()
+            writeStream.write(title.toString())
+            writeStream.flush()
+
             holder.itemView.context.startActivity(intent)
         }
     }

@@ -17,6 +17,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.preference.PreferenceManager
 import com.example.finalapplication.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import java.io.BufferedReader
+import java.io.File
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var binding: ActivityMainBinding
@@ -54,6 +56,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.drawer.addDrawerListener(toggle)
         toggle.syncState()
+
     }
 
     // 토글 버튼 누르면 드로어 화면 나타남
@@ -151,10 +154,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val login = binding.mainDrawerView.menu.findItem(R.id.login)
 
         if (MyApplication.checkAuth()) {
-            val drawer = headerView.findViewById<LinearLayout>(R.id.drawer_view)
-            drawer.setBackgroundColor(Color.parseColor(color))
-
-
             val name = sharedPreferences.getString("username", " ")
             username.text = name
 
@@ -172,7 +171,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             profile.setBackgroundColor(Color.parseColor("#E6E6E6"))
         }
 
+        val drawer = headerView.findViewById<LinearLayout>(R.id.drawer_view)
+        drawer.setBackgroundColor(Color.parseColor(color))
+
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(color)))
+
+        val file = File(filesDir, "recent.txt")
+        val readStream: BufferedReader = file.reader().buffered()
+        binding.recent.text = "최근에 본 장소: " + readStream.readLine()
 
     }
 
