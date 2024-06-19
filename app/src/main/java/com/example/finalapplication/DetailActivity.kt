@@ -46,6 +46,10 @@ class DetailActivity : AppCompatActivity() {
             binding.btnReview.setTextColor(Color.parseColor("#FFC436"))
             binding.btnIntro.setTextColor(Color.parseColor("#FF000000"))
 
+            val id = intent.getStringExtra("id")
+            bundle.putString("contentid", id)
+            Log.d("mobileApp", "$id")
+
             reviewfragment.arguments = bundle
             supportFragmentManager.beginTransaction()
                 .replace(R.id.intro_review, reviewfragment)
@@ -65,6 +69,9 @@ class DetailActivity : AppCompatActivity() {
 
         val address = intent.getStringExtra("address")
         binding.address.text = address
+
+        val id = intent.getStringExtra("id")
+        binding.contentid.text = id
 
     }
 

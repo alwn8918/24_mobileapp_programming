@@ -70,22 +70,7 @@ class ReviewFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding = FragmentReviewBinding.inflate(inflater, container, false)
-
-        MyApplication.db.collection("reviews")
-            .get()
-            .addOnSuccessListener { result ->
-                val itemList = mutableListOf<ReviewData>()
-                for(document in result) {
-                    val item = document.toObject(ReviewData::class.java)
-                    itemList.add(item)
-                    binding.reviewRecyclerView.adapter = ReviewAdapter(itemList)
-                    binding.reviewRecyclerView.layoutManager = LinearLayoutManager(activity)
-                }
-            }
-            .addOnFailureListener {
-
-            }
-
+        val contentid = arguments?.getString("contentid") ?: "1"
 
         binding.btnReview.setOnClickListener {
             if(MyApplication.checkAuth()) {
@@ -96,7 +81,9 @@ class ReviewFragment : Fragment() {
                         "title" to binding.editTitle.text.toString(),
                         "stars" to binding.ratingBar.rating.toFloat(),
                         "comments" to binding.editReview.text.toString(),
-                        "date_time" to dateFormat.format(System.currentTimeMillis())
+                        "date_time" to dateFormat.format(System.currentTimeMillis()),
+                        "contentid" to contentid
+
                     )
                     MyApplication.db.collection("reviews")
                         .add(data)
@@ -112,6 +99,22 @@ class ReviewFragment : Fragment() {
                 Toast.makeText(context, "로그인 해주세요!", Toast.LENGTH_LONG).show()
             }
         }
+
+        MyApplication.db.collection("reviews")
+            .get()
+            .addOnSuccessListener { result ->
+                val itemList = mutableListOf<ReviewData>()
+                for(document in result) {
+                    val item = document.toObject(ReviewData::class.java)
+                    if(contentid == item.contentid) {
+                        itemList.add(item)
+                    }
+                    binding.reviewRecyclerView.adapter = ReviewAdapter(itemList)
+                    binding.reviewRecyclerView.layoutManager = LinearLayoutManager(activity)
+                }
+            }
+            .addOnFailureListener {
+            }
 
         return binding.root
 

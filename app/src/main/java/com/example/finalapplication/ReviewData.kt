@@ -5,5 +5,6 @@ data class ReviewData(
     var date_time: String? = null,
     var email: String? = null,
     var stars: Float = 0.0f,
-    var title: String? = null
+    var title: String? = null,
+    var contentid: String? = null
 )

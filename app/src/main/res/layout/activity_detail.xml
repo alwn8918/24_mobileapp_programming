@@ -22,16 +22,34 @@
         android:text="대분류 > 중분류 > 소분류"
         android:textColor="@color/gray" />
 
-    <TextView
-        android:id="@+id/name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/gmarketsansttfmedium"
-        android:text="여행지 이름"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/gmarketsansttfmedium"
+            android:text="여행지 이름"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/contentid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="아이디"
+            android:fontFamily="@font/gmarketsansttfmedium"
+            android:textColor="@color/gray"
+            android:textSize="5dp"
+            android:layout_marginLeft="5dp"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
