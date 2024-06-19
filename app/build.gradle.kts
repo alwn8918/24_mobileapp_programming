@@ -83,6 +83,9 @@ dependencies {
     // preference
     implementation("androidx.preference:preference:1.2.1")
 
-    // firebasse
+    // firebase
     implementation("com.google.firebase:firebase-firestore-ktx:25.0.0")
+
+    // Storage
+    implementation("com.google.firebase:firebase-storage-ktx:21.0.0")
 }

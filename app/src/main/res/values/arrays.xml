@@ -12,4 +12,14 @@
         <item>#222222</item>
     </string-array>
 
+    <string-array name="my_gender">
+        <item>여자</item>
+        <item>남자</item>
+    </string-array>
+
+    <string-array name="my_gender_values">
+        <item>#FF9EAA</item>
+        <item>#3AA6B9</item>
+    </string-array>
+
 </resources>

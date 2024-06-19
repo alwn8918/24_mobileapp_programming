@@ -1,6 +1,7 @@
 package com.example.finalapplication
 
 data class ReviewData(
+    var docId: String? = null,
     var comments: String? = null,
     var date_time: String? = null,
     var email: String? = null,

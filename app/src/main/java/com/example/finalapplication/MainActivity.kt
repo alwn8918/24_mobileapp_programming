@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -65,12 +66,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.login -> {
                 true
             }
-            R.id.heart -> {
-                true
-            }
-            R.id.myComment -> {
-                true
-            }
             R.id.setting -> {
                 true
             }
@@ -121,6 +116,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val username = headerView.findViewById<TextView>(R.id.username)
         val useremail = headerView.findViewById<TextView>(R.id.useremail)
+        val nickname = headerView.findViewById<TextView>(R.id.nickname)
+        val gender = headerView.findViewById<View>(R.id.profile)
         val login = binding.mainDrawerView.menu.findItem(R.id.login)
 
         if (MyApplication.checkAuth()) {
@@ -132,6 +129,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             username.text = "로그인해주세요"
             useremail.text = "로그인해주세요"
             login.title = "로그인"
+            nickname.text = " "
+            gender.setBackgroundColor(Color.parseColor("#E6E6E6"))
         }
 
     }
@@ -145,13 +144,33 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val color = sharedPreferences.getString("color", "#0174BE")
         binding.mainView.setBackgroundColor(Color.parseColor(color))
 
-        val drawer = headerView.findViewById<RelativeLayout>(R.id.drawer_view)
-        drawer.setBackgroundColor(Color.parseColor(color))
-
-
-        val name = sharedPreferences.getString("username", "안녕하세요!")
         val username = headerView.findViewById<TextView>(R.id.username)
-        username.text = name
+        val useremail = headerView.findViewById<TextView>(R.id.useremail)
+        val nickname = headerView.findViewById<TextView>(R.id.nickname)
+        val profile = headerView.findViewById<View>(R.id.profile)
+        val login = binding.mainDrawerView.menu.findItem(R.id.login)
+
+        if (MyApplication.checkAuth()) {
+            val drawer = headerView.findViewById<LinearLayout>(R.id.drawer_view)
+            drawer.setBackgroundColor(Color.parseColor(color))
+
+
+            val name = sharedPreferences.getString("username", " ")
+            username.text = name
+
+            val nick = sharedPreferences.getString("nickname", " ")
+            nickname.text = "(" + nick + ")"
+
+            val gender = sharedPreferences.getString("gender", "#E6E6E6")
+            profile.setBackgroundColor(Color.parseColor(gender))
+        }
+        else {
+            username.text = "로그인해주세요"
+            useremail.text = "로그인해주세요"
+            login.title = "로그인"
+            nickname.text = " "
+            profile.setBackgroundColor(Color.parseColor("#E6E6E6"))
+        }
 
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(color)))
 

@@ -10,18 +10,18 @@
             android:title="로그인"/>
     </group>
 
-    <group
-        android:id="@+id/menu_me"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/heart"
-            android:icon="@drawable/ic_heart"
-            android:title="찜한 장소"/>
-        <item
-            android:id="@+id/myComment"
-            android:icon="@drawable/ic_comment"
-            android:title="내가 쓴 글"/>
-    </group>
+<!--    <group-->
+<!--        android:id="@+id/menu_me"-->
+<!--        android:checkableBehavior="single">-->
+<!--        <item-->
+<!--            android:id="@+id/heart"-->
+<!--            android:icon="@drawable/ic_heart"-->
+<!--            android:title="찜한 장소"/>-->
+<!--        <item-->
+<!--            android:id="@+id/myComment"-->
+<!--            android:icon="@drawable/ic_comment"-->
+<!--            android:title="내가 쓴 글"/>-->
+<!--    </group>-->
 
     <group
         android:id="@+id/menu_setting"

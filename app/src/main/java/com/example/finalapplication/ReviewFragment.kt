@@ -1,15 +1,21 @@
 package com.example.finalapplication
 
 import android.content.Context
+import android.content.Intent
 import android.icu.lang.UCharacter.GraphemeClusterBreak.L
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.finalapplication.databinding.FragmentIntroBinding
 import com.example.finalapplication.databinding.FragmentReviewBinding
 import com.example.finalapplication.databinding.ItemReviewBinding
@@ -23,7 +29,7 @@ private const val ARG_PARAM2 = "param2"
 
 class ReviewViewHolder(val binding: ItemReviewBinding): RecyclerView.ViewHolder(binding.root)
 
-class ReviewAdapter(val itemList: MutableList<ReviewData>): RecyclerView.Adapter<ReviewViewHolder>() {
+class ReviewAdapter(val context: Context, val itemList: MutableList<ReviewData>): RecyclerView.Adapter<ReviewViewHolder>() {
     override fun getItemCount(): Int {
         return itemList.size
     }
@@ -40,6 +46,16 @@ class ReviewAdapter(val itemList: MutableList<ReviewData>): RecyclerView.Adapter
             title.text = data.title
             ratingBar.rating = data.stars.toFloat()
             commment.text = data.comments
+        }
+
+        val imageRef = MyApplication.storage.reference.child("images/${data.docId}.jpg")
+        imageRef.downloadUrl.addOnCompleteListener{ task->
+            if(task.isSuccessful) {
+                holder.binding.imageView.visibility = View.VISIBLE
+                Glide.with(context)
+                    .load(task.result)
+                    .into(holder.binding.imageView)
+            }
         }
 
     }
@@ -64,6 +80,7 @@ class ReviewFragment : Fragment() {
 
     }
 
+    lateinit var uri: Uri
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -71,6 +88,23 @@ class ReviewFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = FragmentReviewBinding.inflate(inflater, container, false)
         val contentid = arguments?.getString("contentid") ?: "1"
+
+        val requestLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if(it.resultCode === android.app.Activity.RESULT_OK) {
+                binding.addImage.visibility = View.VISIBLE
+                Glide
+                    .with(requireContext())
+                    .load(it.data?.data)
+                    .override(100,100)
+                    .into(binding.addImage)
+                uri = it.data?.data!!
+            }
+        }
+        binding.btnImage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
+            requestLauncher.launch(intent)
+        }
 
         binding.btnReview.setOnClickListener {
             if(MyApplication.checkAuth()) {
@@ -89,6 +123,7 @@ class ReviewFragment : Fragment() {
                         .add(data)
                         .addOnSuccessListener {
                             Toast.makeText(context, "후기를 남겼습니다!", Toast.LENGTH_LONG).show()
+                            uploadImage(it.id)
                         }
                         .addOnFailureListener {
                             Toast.makeText(context, "실패", Toast.LENGTH_LONG).show()
@@ -106,10 +141,11 @@ class ReviewFragment : Fragment() {
                 val itemList = mutableListOf<ReviewData>()
                 for(document in result) {
                     val item = document.toObject(ReviewData::class.java)
+                    item.docId = document.id
                     if(contentid == item.contentid) {
                         itemList.add(item)
                     }
-                    binding.reviewRecyclerView.adapter = ReviewAdapter(itemList)
+                    binding.reviewRecyclerView.adapter = ReviewAdapter(requireContext(), itemList)
                     binding.reviewRecyclerView.layoutManager = LinearLayoutManager(activity)
                 }
             }
@@ -118,6 +154,18 @@ class ReviewFragment : Fragment() {
 
         return binding.root
 
+    }
+
+    fun uploadImage(docId: String) {
+        val imageRef = MyApplication.storage.reference.child("images/${docId}.jpg")
+        val uploadTask = imageRef.putFile(uri)
+        uploadTask.addOnSuccessListener {
+            Toast.makeText(context, "사진을 올렸습니다!", Toast.LENGTH_LONG).show()
+        }
+        uploadTask.addOnFailureListener {
+            Toast.makeText(context, "실패", Toast.LENGTH_LONG).show()
+
+        }
     }
 
     companion object {
