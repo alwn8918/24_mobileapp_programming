@@ -38,7 +38,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding.btnSearch.setOnClickListener {
             Log.d("mobileApp", "btnSearch")
-            bundle.putString("area", binding.search.text.toString())
+            var areacode: String? = null
+            when(binding.search.text.toString()) {
+                "서울" -> areacode = "1"
+                "인천" -> areacode = "2"
+                "대전" -> areacode = "3"
+                "대구" -> areacode = "4"
+                "광주" -> areacode = "5"
+                "부산" -> areacode = "6"
+                "울산" -> areacode = "7"
+                "세종" -> areacode = "8"
+                "경기" -> areacode = "31"
+                "강원" -> areacode = "32"
+                "충북" -> areacode = "33"
+                "충남" -> areacode = "34"
+                "경북" -> areacode = "35"
+                "경남" -> areacode = "36"
+                "전북" -> areacode = "37"
+                "전남" -> areacode = "38"
+                "제주" -> areacode = "39"
+            }
+
+            bundle.putString("area", areacode)
 
             listfragment.arguments = bundle
             supportFragmentManager.beginTransaction()
