@@ -7,6 +7,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import com.kakao.sdk.common.KakaoSdk
 
 class MyApplication : MultiDexApplication() {
     companion object {
@@ -39,5 +40,8 @@ class MyApplication : MultiDexApplication() {
         auth = Firebase.auth
         db = FirebaseFirestore.getInstance()
         storage = Firebase.storage
+
+        // Kakao SDK 초기화
+        KakaoSdk.init(this, "c1342b09e74e2bf9a7414095b30ba91b")
     }
 }

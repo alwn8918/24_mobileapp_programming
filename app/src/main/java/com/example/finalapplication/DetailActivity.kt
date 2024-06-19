@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import androidx.preference.PreferenceManager
 import com.bumptech.glide.Glide
 import com.example.finalapplication.databinding.ActivityAuthBinding
 import com.example.finalapplication.databinding.ActivityDetailBinding
+import com.google.android.gms.maps.MapFragment
 
 class DetailActivity : AppCompatActivity() {
     lateinit var binding: ActivityDetailBinding
@@ -26,6 +28,7 @@ class DetailActivity : AppCompatActivity() {
         // IntroFragment
         val introfragment = IntroFragment()
         val reviewfragment = ReviewFragment()
+        val mapsfragment = MapFragment()
         val bundle = Bundle()
 
         binding.btnIntro.setOnClickListener {
@@ -54,6 +57,13 @@ class DetailActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.intro_review, reviewfragment)
                 .commit()
+        }
+
+        val x = intent.getStringExtra("x")
+        val y = intent.getStringExtra("y")
+        binding.address.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + y + "," + x))
+            startActivity(intent)
         }
 
         val image = intent.getStringExtra("image")

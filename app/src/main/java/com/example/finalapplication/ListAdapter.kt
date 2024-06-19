@@ -43,6 +43,8 @@ class ListAdapter(val datas: MutableList<myXmlItem>?): RecyclerView.Adapter<Recy
             intent.putExtra("name", title)
             intent.putExtra("address", model.addr1.toString())
             intent.putExtra("id", model.contentid.toString())
+            intent.putExtra("x", model.mapx.toString())
+            intent.putExtra("y", model.mapy.toString())
 
             val file = File(holder.itemView.context.filesDir, "recent.txt")
             val writeStream: OutputStreamWriter = file.writer()

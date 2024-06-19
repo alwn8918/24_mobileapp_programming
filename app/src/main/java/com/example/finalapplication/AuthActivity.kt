@@ -99,6 +99,7 @@ class AuthActivity : AppCompatActivity() {
                     Log.e("mobileApp", "카카오계정으로 로그인 실패", error)
                 } else if (token != null) {
                     Log.i("mobileApp", "카카오계정으로 로그인 성공 ${token.accessToken}")
+                    Toast.makeText(baseContext, "카카오 로그인 성공!", Toast.LENGTH_LONG).show()
                     finish()
                 }
             }
@@ -120,6 +121,7 @@ class AuthActivity : AppCompatActivity() {
                         UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
                     } else if (token != null) {
                         Log.i("mobileApp", "카카오톡으로 로그인 성공 ${token.accessToken}")
+                        Toast.makeText(baseContext, "카카오 로그인 성공!", Toast.LENGTH_LONG).show()
                         finish()
                     }
                 }

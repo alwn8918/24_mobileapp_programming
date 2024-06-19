@@ -37,7 +37,11 @@ data class myXmlItem(
     @PropertyElement
     val firstimage: String?,
     @PropertyElement
-    val contentid: Int?
+    val contentid: Int?,
+    @PropertyElement
+    val mapx: String?,
+    @PropertyElement
+    val mapy: String?
 ) {
-    constructor(): this(null, null, null, null, null, null, null)
+    constructor(): this(null, null, null, null, null, null, null, null, null)
 }
