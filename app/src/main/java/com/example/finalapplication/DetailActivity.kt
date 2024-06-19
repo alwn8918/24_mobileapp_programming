@@ -25,17 +25,30 @@ class DetailActivity : AppCompatActivity() {
 
         // IntroFragment
         val introfragment = IntroFragment()
+        val reviewfragment = ReviewFragment()
         val bundle = Bundle()
 
         binding.btnIntro.setOnClickListener {
-            binding.btnIntro.setTextColor(Color.parseColor("#0174BE"))
+            binding.btnIntro.setTextColor(Color.parseColor("#FFC436"))
+            binding.btnReview.setTextColor(Color.parseColor("#FF000000"))
+
             val id = intent.getStringExtra("id")
             bundle.putString("contentid", id)
             Log.d("mobileApp", "$id")
 
             introfragment.arguments = bundle
             supportFragmentManager.beginTransaction()
-                .replace(R.id.intro, introfragment)
+                .replace(R.id.intro_review, introfragment)
+                .commit()
+        }
+
+        binding.btnReview.setOnClickListener {
+            binding.btnReview.setTextColor(Color.parseColor("#FFC436"))
+            binding.btnIntro.setTextColor(Color.parseColor("#FF000000"))
+
+            reviewfragment.arguments = bundle
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.intro_review, reviewfragment)
                 .commit()
         }
 

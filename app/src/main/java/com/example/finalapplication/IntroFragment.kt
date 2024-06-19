@@ -38,7 +38,7 @@ class IntroFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val binding = FragmentIntroBinding.inflate(inflater, container, false)
         val contentid = arguments?.getString("contentid") ?: "1"
@@ -56,7 +56,7 @@ class IntroFragment : Fragment() {
             override fun onResponse(call: Call<IntroResponse>, response: Response<IntroResponse>) {
                 if (response.isSuccessful) {
                     Log.d("mobileApp", "${response.body()}")
-                    binding.introRecyclerView.adapter = IntroAdapter(response.body()!!.body!!.items!!.item)
+                    binding.introRecyclerView.adapter = IntroAdapter(response.body()!!.body.items.item)
                     binding.introRecyclerView.layoutManager = LinearLayoutManager(activity)
                 }
             }

@@ -29,11 +29,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // sharedPreferences
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val color = sharedPreferences.getString("color", "#0174BE")
-        binding.mainView.setBackgroundColor(Color.parseColor(color))
-
         // ListFragment
         val listfragment = ListFragment()
         val bundle = Bundle()

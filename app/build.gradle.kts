@@ -82,4 +82,7 @@ dependencies {
 
     // preference
     implementation("androidx.preference:preference:1.2.1")
+
+    // firebasse
+    implementation("com.google.firebase:firebase-firestore-ktx:25.0.0")
 }
